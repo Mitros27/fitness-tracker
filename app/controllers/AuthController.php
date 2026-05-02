@@ -3,8 +3,13 @@ class AuthController extends Controller
 {
     public function login()
     {
+        // Ako je vec ulogovan, preusmeri ga (admin na /admin, user na /dashboard)
         if ($this->isLoggedIn()) {
-            $this->redirect('/dashboard');
+            if ($_SESSION['role'] === 'admin') {
+                $this->redirect('/admin');
+            } else {
+                $this->redirect('/dashboard');
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -25,7 +30,13 @@ class AuthController extends Controller
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['full_name'] = $user['full_name'];
                 $this->setFlash('Dobrodosli, ' . $user['full_name'] . '!', 'success');
-                $this->redirect('/dashboard');
+
+                // Admin ide na admin panel, ostali na dashboard
+                if ($user['role'] === 'admin') {
+                    $this->redirect('/admin');
+                } else {
+                    $this->redirect('/dashboard');
+                }
             } else {
                 $this->setFlash('Pogresno korisnicko ime ili lozinka', 'danger');
                 $this->redirect('/login');
@@ -39,8 +50,13 @@ class AuthController extends Controller
 
     public function register()
     {
+        // Ako je vec ulogovan, preusmeri ga (admin na /admin, user na /dashboard)
         if ($this->isLoggedIn()) {
-            $this->redirect('/dashboard');
+            if ($_SESSION['role'] === 'admin') {
+                $this->redirect('/admin');
+            } else {
+                $this->redirect('/dashboard');
+            }
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

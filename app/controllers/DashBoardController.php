@@ -1,5 +1,5 @@
 <?php
-class DashBoardController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {

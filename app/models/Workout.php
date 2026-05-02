@@ -151,6 +151,17 @@ class Workout extends Model
         return $stmt->fetch();
     }
 
+    // NOVA METODA - globalna statistika treninga po mesecu (svi korisnici zajedno)
+    public function getGlobalWorkoutsByMonth()
+    {
+        $sql = "SELECT DATE_FORMAT(date, '%Y-%m') as month, COUNT(*) as total_workouts
+                FROM {$this->table}
+                GROUP BY month
+                ORDER BY month ASC";
+        $stmt = $this->query($sql);
+        return $stmt->fetchAll();
+    }
+
     public function getUserStats($userId)
     {
         $sql = "SELECT COUNT(*) as total_workouts,

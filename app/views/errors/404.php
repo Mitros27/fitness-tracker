@@ -1,12 +1,10 @@
-<?php require_once APP_PATH . '/views/layouts/header.php'; ?>
-<div class='error-container'>
+<div class="error-container">
     <h1 class="error-code">404</h1>
-    <h2 class="error-title">Stranica nije pronadjena</h2>
+    <h2 class="error-title">Stranica nije pronađena</h2>
     <p class="error-message">
-        Zao nam je, stranica koju trazite ne postoji ili je premestena.
+        Žao nam je, stranica koju tražite ne postoji ili je premeštena.
     </p>
     <a href="<?= BASE_URL ?>" class="btn btn-primary">
-        Nazad na pocetnu
+        Nazad na početnu
     </a>
 </div>
-<?php require_once APP_PATH . '/views/layouts/footer.php' ?>

@@ -4,19 +4,20 @@ class AdminController extends Controller
     public function index()
     {
         $this->requireAdmin();
-        $userModel    = $this->model('User');
+        $userModel = $this->model('User');
         $workoutModel = $this->model('Workout');
         $exerciseModel = $this->model('Exercise');
         $measurementModel = $this->model('Measurement');
 
         $this->render('admin/index', [
-            'title'          => 'Admin panel',
-            'totalUsers'     => $userModel->getTotalUsers(),
-            'totalWorkouts'  => $workoutModel->count(),
+            'title' => 'Admin panel',
+            'totalUsers' => $userModel->getTotalUsers(),
+            'totalWorkouts' => $workoutModel->count(),
             'totalExercises' => $exerciseModel->count(),
             'totalMeasurements' => $measurementModel->count(),
-            'globalStats'    => $workoutModel->getGlobalStats(),
-            'exercisesByType'=> $exerciseModel->countByType(),
+            'globalStats' => $workoutModel->getGlobalStats(),
+            'exercisesByType' => $exerciseModel->countByType(),
+            'globalWorkoutsByMonth' => json_encode($workoutModel->getGlobalWorkoutsByMonth()),
         ]);
     }
 
@@ -33,12 +34,12 @@ class AdminController extends Controller
     public function stats()
     {
         $this->requireAdmin();
-        $workoutModel  = $this->model('Workout');
+        $workoutModel = $this->model('Workout');
         $exerciseModel = $this->model('Exercise');
         $this->render('admin/stats', [
-            'title'          => 'Statistika',
-            'globalStats'    => $workoutModel->getGlobalStats(),
-            'exercisesByType'=> $exerciseModel->countByType(),
+            'title' => 'Statistika',
+            'globalStats' => $workoutModel->getGlobalStats(),
+            'exercisesByType' => $exerciseModel->countByType(),
         ]);
     }
 }
