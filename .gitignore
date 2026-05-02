@@ -1,0 +1,29 @@
+# IDE i editori
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS fajlovi
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+
+# Backup folderi
+*backup*
+*BACKUP*
+
+# Temp fajlovi
+*.tmp
+*.bak
+
+# Export folder (privremeni JSON fajlovi koje aplikacija pravi)
+exports/*.json
+!exports/.gitkeep
+
+# Sensitive (ako kasnije napraviš production config)
+config-prod.php
+.env
